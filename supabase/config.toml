@@ -1,0 +1,22 @@
+project_id = "reejpxxcemymyvzoakus"
+
+[functions.analyze-image]
+verify_jwt = false
+
+[functions.gemini-enhance]
+verify_jwt = false
+
+[functions.kie-enhance]
+verify_jwt = false
+
+[functions.realesrgan-enhance]
+verify_jwt = false
+
+[functions.nova-chat]
+verify_jwt = false
+
+[functions.generate-report]
+verify_jwt = false
+
+[functions.compute-ground-truth-metrics]
+verify_jwt = false

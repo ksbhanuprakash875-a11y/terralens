@@ -1,0 +1,73 @@
+/* Nova Chat Styles */
+.nova-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.nova-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.nova-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.25);
+  border-radius: 4px;
+}
+.nova-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.45);
+}
+
+/* Typing dots */
+@keyframes nova-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+.nova-dot-1 { animation: nova-bounce 1.4s infinite 0s; }
+.nova-dot-2 { animation: nova-bounce 1.4s infinite 0.2s; }
+.nova-dot-3 { animation: nova-bounce 1.4s infinite 0.4s; }
+
+/* Pulse ring on FAB */
+@keyframes nova-pulse-ring {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.nova-pulse-ring {
+  animation: nova-pulse-ring 2s ease-out infinite;
+}
+
+/* Online dot pulse */
+@keyframes nova-online {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.nova-online-dot {
+  animation: nova-online 2s ease-in-out infinite;
+}
+
+/* Markdown code blocks */
+.nova-markdown pre {
+  margin: 8px 0;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.nova-markdown code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.82em;
+}
+.nova-markdown p {
+  margin: 4px 0;
+}
+.nova-markdown ul, .nova-markdown ol {
+  margin: 4px 0 4px 16px;
+}
+.nova-markdown table {
+  border-collapse: collapse;
+  margin: 8px 0;
+}
+.nova-markdown th, .nova-markdown td {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 4px 8px;
+  font-size: 0.85em;
+}
+.nova-markdown blockquote {
+  border-left: 3px solid rgba(0,229,255,0.4);
+  padding-left: 12px;
+  margin: 8px 0;
+  opacity: 0.85;
+}

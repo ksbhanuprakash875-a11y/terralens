@@ -1,0 +1,207 @@
+.animated-dl-container {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animated-dl-label {
+  background-color: transparent;
+  border: 2px solid hsl(187 100% 50%);
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  width: 160px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  padding: 5px;
+  position: relative;
+}
+
+.animated-dl-label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: hsl(210 40% 92%);
+  width: 8px;
+  height: 8px;
+  transition: all 0.4s ease;
+  border-radius: 100%;
+  margin: auto;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.animated-dl-label .animated-dl-input {
+  display: none;
+}
+
+.animated-dl-label .animated-dl-title {
+  font-size: 15px;
+  color: hsl(210 40% 92%);
+  transition: all 0.4s ease;
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+
+.animated-dl-label .animated-dl-title:last-child {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.animated-dl-label .animated-dl-circle {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color: hsl(187 100% 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+  position: relative;
+  box-shadow: 0 0 0 0 hsl(210 40% 92%);
+  overflow: hidden;
+}
+
+.animated-dl-label .animated-dl-circle .animated-dl-icon {
+  color: hsl(228 60% 7%);
+  width: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+}
+
+.animated-dl-label .animated-dl-circle .animated-dl-square {
+  aspect-ratio: 1;
+  width: 15px;
+  border-radius: 2px;
+  background-color: hsl(228 60% 7%);
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+}
+
+.animated-dl-label .animated-dl-circle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: hsl(187 100% 40%);
+  width: 100%;
+  height: 0;
+  transition: all 0.4s ease;
+}
+
+/* Checked states */
+.animated-dl-label:has(.animated-dl-input:checked) {
+  width: 57px;
+  animation: adl-installed 0.4s ease 3.5s forwards;
+}
+
+.animated-dl-label:has(.animated-dl-input:checked)::before {
+  animation: adl-rotate 3s ease-in-out 0.4s forwards;
+}
+
+.animated-dl-label .animated-dl-input:checked + .animated-dl-circle {
+  animation:
+    adl-pulse 1s forwards,
+    adl-circleDelete 0.2s ease 3.5s forwards;
+  rotate: 180deg;
+}
+
+.animated-dl-label .animated-dl-input:checked + .animated-dl-circle::before {
+  animation: adl-installing 3s ease-in-out forwards;
+}
+
+.animated-dl-label .animated-dl-input:checked + .animated-dl-circle .animated-dl-icon {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.animated-dl-label .animated-dl-input:checked ~ .animated-dl-circle .animated-dl-square {
+  opacity: 1;
+  visibility: visible;
+}
+
+.animated-dl-label .animated-dl-input:checked ~ .animated-dl-title {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.animated-dl-label .animated-dl-input:checked ~ .animated-dl-title:last-child {
+  animation: adl-showInstalledMessage 0.4s ease 3.5s forwards;
+}
+
+@keyframes adl-pulse {
+  0% {
+    scale: 0.95;
+    box-shadow: 0 0 0 0 hsla(187, 100%, 50%, 0.7);
+  }
+  70% {
+    scale: 1;
+    box-shadow: 0 0 0 16px hsla(187, 100%, 50%, 0);
+  }
+  100% {
+    scale: 0.95;
+    box-shadow: 0 0 0 0 hsla(187, 100%, 50%, 0);
+  }
+}
+
+@keyframes adl-installing {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+@keyframes adl-rotate {
+  0% {
+    transform: rotate(-90deg) translate(27px) rotate(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  99% {
+    transform: rotate(270deg) translate(27px) rotate(270deg);
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes adl-installed {
+  100% {
+    width: 150px;
+    border-color: hsl(140 60% 40%);
+  }
+}
+
+@keyframes adl-circleDelete {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes adl-showInstalledMessage {
+  100% {
+    opacity: 1;
+    visibility: visible;
+    right: 56px;
+  }
+}

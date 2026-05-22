@@ -1,0 +1,312 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 228 60% 7%;
+    --foreground: 210 40% 92%;
+
+    --card: 228 40% 12%;
+    --card-foreground: 210 40% 92%;
+
+    --popover: 228 40% 12%;
+    --popover-foreground: 210 40% 92%;
+
+    --primary: 187 100% 50%;
+    --primary-foreground: 228 60% 7%;
+
+    --secondary: 263 75% 52%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 228 30% 18%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 263 75% 52%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 228 20% 20%;
+    --input: 228 20% 20%;
+    --ring: 187 100% 50%;
+
+    --radius: 0.75rem;
+
+    --cyan: 187 100% 50%;
+    --violet: 263 75% 52%;
+
+    --sidebar-background: 228 60% 7%;
+    --sidebar-foreground: 210 40% 92%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 228 60% 7%;
+    --sidebar-accent: 228 30% 18%;
+    --sidebar-accent-foreground: 210 40% 92%;
+    --sidebar-border: 228 20% 20%;
+    --sidebar-ring: 187 100% 50%;
+  }
+
+  .light {
+    --background: 220 20% 97%;
+    --foreground: 228 40% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 228 40% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 228 40% 12%;
+
+    --primary: 187 100% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 263 60% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 14% 90%;
+    --muted-foreground: 215 16% 42%;
+
+    --accent: 263 60% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 85%;
+    --input: 220 13% 85%;
+    --ring: 187 100% 38%;
+
+    --cyan: 187 100% 38%;
+    --violet: 263 60% 55%;
+
+    --sidebar-background: 220 20% 97%;
+    --sidebar-foreground: 228 40% 12%;
+    --sidebar-primary: 187 100% 38%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 90%;
+    --sidebar-accent-foreground: 228 40% 12%;
+    --sidebar-border: 220 13% 85%;
+    --sidebar-ring: 187 100% 38%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Focus ring styling — cyan outline on all focusable elements */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .glass {
+    @apply backdrop-blur-xl border border-border/50;
+    background: hsl(var(--card) / 0.4);
+  }
+
+  .light .glass {
+    background: hsl(var(--card) / 0.75);
+    border-color: hsl(var(--border) / 0.6);
+    box-shadow:
+      0 1px 2px hsl(var(--foreground) / 0.04),
+      0 4px 12px hsl(var(--foreground) / 0.03);
+  }
+
+  /* Subtle dot-grid texture — only visible in light mode */
+  .light-texture {
+    background-image: none;
+  }
+
+  .light .light-texture {
+    background-image: radial-gradient(
+      circle,
+      hsl(var(--foreground) / 0.05) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+
+  /* Topo-line texture variant */
+  .light-topo {
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 59px,
+        hsl(var(--cyan) / 0.04) 59px,
+        hsl(var(--cyan) / 0.04) 60px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 59px,
+        hsl(var(--cyan) / 0.04) 59px,
+        hsl(var(--cyan) / 0.04) 60px
+      );
+  }
+
+  .glow-cyan {
+    box-shadow:
+      0 0 20px hsl(var(--cyan) / 0.3),
+      0 0 60px hsl(var(--cyan) / 0.1);
+  }
+
+  .light .glow-cyan {
+    box-shadow:
+      0 0 15px hsl(var(--cyan) / 0.2),
+      0 0 40px hsl(var(--cyan) / 0.06);
+  }
+
+  .glow-cyan-sm {
+    box-shadow: 0 0 10px hsl(var(--cyan) / 0.2);
+  }
+
+  .light .glow-cyan-sm {
+    box-shadow: 0 0 8px hsl(var(--cyan) / 0.12);
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--cyan)), hsl(var(--violet)));
+  }
+
+  .btn-gradient {
+    background: linear-gradient(135deg, hsl(var(--cyan)), hsl(var(--violet)));
+  }
+
+  .btn-gradient:hover {
+    background: linear-gradient(135deg, hsl(var(--cyan) / 0.9), hsl(var(--violet) / 0.9));
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, hsl(0 0% 100% / 0.15) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .light .shimmer::after {
+    background: linear-gradient(90deg, transparent 0%, hsl(0 0% 100% / 0.3) 50%, transparent 100%);
+    background-size: 200% 100%;
+  }
+
+  /* Button micro-interactions */
+  .btn-press {
+    @apply transition-transform duration-150;
+  }
+  .btn-press:hover {
+    transform: scale(1.02);
+  }
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
+  /* Nav link underline slide-in */
+  .nav-underline {
+    @apply relative;
+  }
+  .nav-underline::after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary origin-left scale-x-0 transition-transform duration-300;
+  }
+  .nav-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* 3D tilt on cards */
+  .card-tilt {
+    @apply transition-transform duration-300;
+    transform-style: preserve-3d;
+    perspective: 800px;
+  }
+  .card-tilt:hover {
+    transform: perspective(800px) rotateX(2deg) rotateY(-2deg) translateY(-4px);
+  }
+
+  /* Page loader pulse ring */
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+  .pulse-ring {
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+
+
+  /* Light/dark mode hero helpers */
+  .light-hide-stars {
+    display: block;
+  }
+
+  .light .light-hide-stars {
+    display: none;
+  }
+
+  /* light-texture wash — only visible in light */
+  .light-texture-wash {
+    display: none;
+  }
+
+  .light .light-texture-wash {
+    display: block;
+  }
+
+  /* Light-mode glow orbs — larger, softer, tinted differently */
+  .light .bg-primary\/10 {
+    opacity: 0.6;
+  }
+
+  .light .bg-secondary\/10 {
+    opacity: 0.5;
+  }
+}
+
+/* ------------------------------------------------
+  MODIFICATION: FORCE HIDE LOVABLE BADGE 
+  ------------------------------------------------
+*/
+#lovable-badge,
+.lovable-badge {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
